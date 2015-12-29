@@ -5,10 +5,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-/**
- * The persistent class for the items database table.
- * 
- */
 @Entity
 @Table(name="items",schema = "GWT")
 @NamedQuery(name="Item.findAll", query="SELECT i FROM Item i")
