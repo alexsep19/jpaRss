@@ -22,6 +22,8 @@ public class Url implements Serializable {
 	private Date laststart;
 	private String schedule;
 	private String url;
+	private String isActive;
+
 	private List<Item> items;
 	private Mail mail;
 
@@ -82,7 +84,13 @@ public class Url implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
+    @Column(name="IS_ACTIVE")
+	public String getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
 
 	//bi-directional many-to-one association to Item
 	@OneToMany(mappedBy="url")

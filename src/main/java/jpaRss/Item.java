@@ -18,7 +18,8 @@ public class Item implements Serializable {
 	private String title;
 	private Mail mail;
 	private Url url;
-
+	private String isActive;
+	
 	public Item() {
 	}
 
@@ -48,7 +49,6 @@ public class Item implements Serializable {
 		this.title = title;
 	}
 
-
 	//bi-directional many-to-one association to Mail
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="mails_id")
@@ -70,6 +70,15 @@ public class Item implements Serializable {
 
 	public void setUrl(Url url) {
 		this.url = url;
+	}
+	
+    @Column(name="IS_ACTIVE")
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
 	}
 
 }
