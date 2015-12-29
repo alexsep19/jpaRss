@@ -23,8 +23,7 @@ public class Item implements Serializable {
 	public Integer getVersion() {
 		return 1;
 	}
-
-    //------------------------
+    //--------------------------
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
