@@ -22,6 +22,21 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
      </plugins>
     </build>
     
@@ -30,13 +45,13 @@
 	  <groupId>org.eclipse.persistence</groupId>
 	  <artifactId>eclipselink</artifactId>
 	  <version>${jpaVersion}</version>
-	  <scope>runtime</scope>
+	  <scope>compile</scope>
      </dependency>
      <dependency>
   		<groupId>org.eclipse.persistence</groupId>
   		<artifactId>org.eclipse.persistence.jpa</artifactId>
   		<version>${jpaVersion}</version>
-  		<scope>runtime</scope>
+  		<scope>compile</scope>
   	 </dependency>
   	 <dependency>
 	    <groupId>postgresql</groupId>
@@ -44,12 +59,12 @@
 	    <version>9.1-901-1.jdbc4</version>
 	    <scope>runtime</scope>
      </dependency>
-     <dependency>
+<!--       <dependency>
   		<groupId>javax.validation</groupId>
   		<artifactId>validation-api</artifactId>
   		<version>1.0.0.GA</version>
   		<scope>runtime</scope>
-  	 </dependency>
+  	 </dependency>-->
     </dependencies>
  
 </project>
