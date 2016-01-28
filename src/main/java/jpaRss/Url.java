@@ -43,7 +43,7 @@ public class Url implements Serializable {
 	@Id
 //	@GeneratedValue(strategy=GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_seq_gen")
-	@SequenceGenerator(name = "url_seq_gen", sequenceName = "url_id_seq",allocationSize=1)
+	@SequenceGenerator(name = "url_seq_gen", sequenceName = "urls_id_seq",allocationSize=1)
 	public Integer getId() {
 		return this.id;
 	}

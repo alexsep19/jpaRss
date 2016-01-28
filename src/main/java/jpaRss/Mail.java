@@ -37,7 +37,7 @@ public class Mail implements Serializable {
 	@Id
 //	@GeneratedValue(strategy=GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq_gen")
-	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "mail_id_seq",allocationSize=1)
+	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "mails_id_seq",allocationSize=1)
 
 	public Integer getId() {
 		return this.id;

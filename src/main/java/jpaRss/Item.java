@@ -31,7 +31,7 @@ public class Item implements Serializable {
 	@Id
 //	@GeneratedValue(strategy=GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq_gen")
-	@SequenceGenerator(name = "item_seq_gen", sequenceName = "item_id_seq",allocationSize=1)
+	@SequenceGenerator(name = "item_seq_gen", sequenceName = "items_id_seq",allocationSize=1)
 	public Integer getId() {
 		return this.id;
 	}
