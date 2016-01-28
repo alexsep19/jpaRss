@@ -29,11 +29,16 @@ public class Mail implements Serializable {
 		public Integer getVersion() {
 			return 1;
 		}
-
+    	public String toString(){
+            return id==null?"0":String.valueOf(id);
+    	}
 	//------------------------
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq_gen")
+	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "mail_id_seq",allocationSize=1)
+
 	public Integer getId() {
 		return this.id;
 	}
