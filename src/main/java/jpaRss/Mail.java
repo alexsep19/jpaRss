@@ -37,7 +37,7 @@ public class Mail implements Serializable {
 	@Id
 //	@GeneratedValue(strategy=GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq_gen")
-	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "mails_id_seq",allocationSize=1)
+	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "gwt.mails_id_seq",allocationSize=1)
 
 	public Integer getId() {
 		return this.id;
@@ -67,7 +67,7 @@ public class Mail implements Serializable {
 
 
 	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="mail")
+	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	public List<Item> getItems() {
 		return this.items;
 	}
@@ -92,7 +92,7 @@ public class Mail implements Serializable {
 
 
 	//bi-directional many-to-one association to Url
-	@OneToMany(mappedBy="mail")
+	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	public List<Url> getUrls() {
 		return this.urls;
 	}

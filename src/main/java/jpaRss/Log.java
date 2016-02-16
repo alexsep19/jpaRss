@@ -38,7 +38,7 @@ public class Log implements Serializable {
 	@Id
 //	@GeneratedValue(strategy=GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq_gen")
-	@SequenceGenerator(name = "log_seq_gen", sequenceName = "log_id_seq",allocationSize=1)
+	@SequenceGenerator(name = "log_seq_gen", sequenceName = "gwt.log_id_seq",allocationSize=1)
 	public Integer getId() {
 		return this.id;
 	}
