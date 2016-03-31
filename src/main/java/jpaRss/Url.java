@@ -13,18 +13,28 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="urls",schema = "GWT")
+@Table(name="urls",schema = "RSS")
 //@NamedQuery(name="Url.findAll", query="SELECT u FROM Url u")
 public class Url implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_seq_gen")
+	@SequenceGenerator(name = "url_seq_gen", sequenceName = "rss.urls_id_seq",allocationSize=1)
 	private Integer id;
+	@Temporal(TemporalType.DATE)
 	private Date lastpub;
+	@Temporal(TemporalType.DATE)
 	private Date laststart;
 	private String schedule;
 	private String url;
+    @Column(name="IS_ACTIVE")
 	private String isActive;
 
+	@OneToMany(mappedBy="url", cascade=CascadeType.REMOVE)
 	private List<Item> items;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="mails_id")
 	private Mail mail;
 
 	public Url() {
@@ -40,10 +50,6 @@ public class Url implements Serializable {
   //------------------------
 
 
-	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_seq_gen")
-	@SequenceGenerator(name = "url_seq_gen", sequenceName = "gwt.urls_id_seq",allocationSize=1)
 	public Integer getId() {
 		return this.id;
 	}
@@ -53,7 +59,6 @@ public class Url implements Serializable {
 	}
 
 
-	@Temporal(TemporalType.DATE)
 	public Date getLastpub() {
 		return this.lastpub;
 	}
@@ -63,7 +68,6 @@ public class Url implements Serializable {
 	}
 
 
-	@Temporal(TemporalType.DATE)
 	public Date getLaststart() {
 		return this.laststart;
 	}
@@ -89,7 +93,6 @@ public class Url implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-    @Column(name="IS_ACTIVE")
 	public String getIsActive() {
 		return isActive;
 	}
@@ -98,7 +101,6 @@ public class Url implements Serializable {
 	}
 
 	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="url", cascade=CascadeType.REMOVE)
 	public List<Item> getItems() {
 		return this.items;
 	}
@@ -123,8 +125,6 @@ public class Url implements Serializable {
 
 
 	//bi-directional many-to-one association to Mail
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="mails_id")
 	public Mail getMail() {
 		return this.mail;
 	}

@@ -6,14 +6,23 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="items",schema = "GWT")
+@Table(name="items",schema = "RSS")
 @NamedQuery(name="Item.findAll", query="SELECT i FROM Item i")
 public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq_gen")
+	@SequenceGenerator(name = "item_seq_gen", sequenceName = "rss.items_id_seq",allocationSize=1)
 	private Integer id;
 	private String title;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="mails_id")
 	private Mail mail;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="urls_id")
 	private Url url;
+    @Column(name="IS_ACTIVE")
 	private String isActive;
 	
 	public Item() {
@@ -28,10 +37,6 @@ public class Item implements Serializable {
 	}
     //--------------------------
 
-	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq_gen")
-	@SequenceGenerator(name = "item_seq_gen", sequenceName = "gwt.items_id_seq",allocationSize=1)
 	public Integer getId() {
 		return this.id;
 	}
@@ -50,8 +55,6 @@ public class Item implements Serializable {
 	}
 
 	//bi-directional many-to-one association to Mail
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="mails_id")
 	public Mail getMail() {
 		return this.mail;
 	}
@@ -62,8 +65,6 @@ public class Item implements Serializable {
 
 
 	//bi-directional many-to-one association to Url
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="urls_id")
 	public Url getUrl() {
 		return this.url;
 	}
@@ -72,7 +73,6 @@ public class Item implements Serializable {
 		this.url = url;
 	}
 	
-    @Column(name="IS_ACTIVE")
 	public String getIsActive() {
 		return isActive;
 	}

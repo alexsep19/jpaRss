@@ -12,20 +12,27 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="mails",schema = "GWT")
+@Table(name="mails",schema = "RSS")
 //@NamedQuery(name="Mail.findAll", query="SELECT m FROM Mail m")
 public class Mail implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq_gen")
+	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "rss.mails_id_seq",allocationSize=1)
 	private Integer id;
 	private String name;
 	private String url;
+	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	private List<Item> items;
+	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	private List<Url> urls;
 
 	public Mail() {
 	}
 
 	//------- mine -----------
+//	@Transient
 		public Integer getVersion() {
 			return 1;
 		}
@@ -34,10 +41,6 @@ public class Mail implements Serializable {
     	}
 	//------------------------
 
-	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq_gen")
-	@SequenceGenerator(name = "mail_seq_gen", sequenceName = "gwt.mails_id_seq",allocationSize=1)
 
 	public Integer getId() {
 		return this.id;
@@ -67,7 +70,6 @@ public class Mail implements Serializable {
 
 
 	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	public List<Item> getItems() {
 		return this.items;
 	}
@@ -92,7 +94,6 @@ public class Mail implements Serializable {
 
 
 	//bi-directional many-to-one association to Url
-	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	public List<Url> getUrls() {
 		return this.urls;
 	}

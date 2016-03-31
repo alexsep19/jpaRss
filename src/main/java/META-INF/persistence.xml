@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 <persistence-unit name="jpaRss" transaction-type="JTA">
-	  <jta-data-source>java:/comp/env/jdbc/rss</jta-data-source>
+	  <jta-data-source>java:jboss/datasources/PostgreSQLDS</jta-data-source>
+	  <!-- rss -->
 		<class>jpaRss.Item</class>
-		<class>jpaRss.Log</class>
 		<class>jpaRss.Mail</class>
 		<class>jpaRss.Url</class>
+	    <class>rolo.Role</class>
+        <class>rolo.Urro</class>
+        <class>rolo.User</class>
+		<class>rolo.Log</class>
 <!--     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
@@ -14,6 +18,6 @@
       <property name="eclipselink.logging.level" value="ALL" />
     </properties>
  -->   
-      <validation-mode>NONE</validation-mode>
+<!--        <validation-mode>NONE</validation-mode>-->
 	</persistence-unit>
 </persistence>
