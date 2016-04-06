@@ -21,11 +21,24 @@ CREATE TABLE rolo.roles (
   mess varchar(100),
   dt date NOT NULL
   );
+   CREATE TABLE rolo.state (
+  id SERIAL PRIMARY KEY,
+  name varchar(20) NOT NULL,
+  value varchar(20)
+  );
+ CREATE UNIQUE INDEX urro_unq ON rolo.urro (user_id,role_id);
+ CREATE UNIQUE INDEX roles_unq ON rolo.roles (code);
+ CREATE UNIQUE INDEX users_unq ON rolo.users (name);
+ CREATE UNIQUE INDEX state_unq ON rolo.state (name);
 --------- 
+drop TABLE IF EXISTS rss.items;
+drop TABLE IF EXISTS  rss.urls;
+drop TABLE IF EXISTS  rss.mails;
+
  CREATE SCHEMA rss;
 CREATE TABLE rss.mails (
   id SERIAL PRIMARY KEY,
-  url varchar(50),
+  url varchar(50) NOT NULL,
   name varchar(50),
   user_id INTEGER NOT NULL references rolo.users(id)
 );
@@ -33,7 +46,7 @@ CREATE TABLE rss.mails (
 CREATE TABLE rss.urls (
   id SERIAL PRIMARY KEY,
   mails_id INTEGER NOT NULL references rss.mails(id),
-  url varchar(100),
+  url varchar(100) NOT NULL,
   schedule varchar(50),
   lastpub date,
   is_active char(1),
@@ -43,6 +56,10 @@ CREATE TABLE rss.items (
   id SERIAL PRIMARY KEY,
   mails_id INTEGER NOT NULL references rss.mails(id),
   urls_id INTEGER NOT NULL references rss.urls(id),
-  title varchar(50),
+  title varchar(50) NOT NULL,
   is_active char(1)
 );
+
+CREATE UNIQUE INDEX urls_unq ON rss.urls (url);
+CREATE UNIQUE INDEX items_unq ON rss.items (urls_id, title);
+CREATE UNIQUE INDEX mails_unq ON rss.mails (user_id, url);

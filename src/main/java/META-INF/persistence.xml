@@ -11,6 +11,7 @@
         <class>rolo.Urro</class>
         <class>rolo.User</class>
 		<class>rolo.Log</class>
+		<class>rolo.State</class>
      <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/rss" />
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />

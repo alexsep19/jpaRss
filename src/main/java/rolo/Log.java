@@ -25,7 +25,7 @@ public class Log implements Serializable {
 	private String item;
 	private String mess;
 	@Temporal(TemporalType.DATE)
-	private Date update;
+	private Date dt;
 
 	public Log() {
 	}
@@ -76,12 +76,12 @@ public class Log implements Serializable {
 	}
 
 
-	public Date getUpdate() {
-		return this.update;
+	public Date getDt() {
+		return this.dt;
 	}
 
-	public void setUpdate(Date update) {
-		this.update = update;
+	public void setDt(Date dt) {
+		this.dt = dt;
 	}
 
 }
