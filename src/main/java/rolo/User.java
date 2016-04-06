@@ -26,7 +26,7 @@ public class User implements Serializable {
 	private String pass;
 
 	//bi-directional many-to-one association to Urro
-	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<Urro> urros;
 	
 	//------- mine -----------

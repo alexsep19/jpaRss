@@ -33,7 +33,8 @@ public class Url implements Serializable {
 
 	@OneToMany(mappedBy="url", cascade=CascadeType.REMOVE)
 	private List<Item> items;
-	@ManyToOne(fetch=FetchType.LAZY)
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="mails_id")
 	private Mail mail;
 

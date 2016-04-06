@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import rolo.User;
+
 import java.util.List;
 
 
@@ -28,6 +30,10 @@ public class Mail implements Serializable {
 	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	private List<Url> urls;
 
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	public Mail() {
 	}
 
@@ -115,5 +121,14 @@ public class Mail implements Serializable {
 
 		return url;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 }

@@ -16,10 +16,10 @@ public class Item implements Serializable {
 	@SequenceGenerator(name = "item_seq_gen", sequenceName = "rss.items_id_seq",allocationSize=1)
 	private Integer id;
 	private String title;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="mails_id")
 	private Mail mail;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="urls_id")
 	private Url url;
     @Column(name="IS_ACTIVE")
