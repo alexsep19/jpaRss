@@ -27,7 +27,7 @@ public class Mail implements Serializable {
 	private String url;
 	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
 	private List<Item> items;
-	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="mail", cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
 	private List<Url> urls;
 
 	@ManyToOne(fetch=FetchType.EAGER)

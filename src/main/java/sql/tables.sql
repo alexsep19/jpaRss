@@ -38,7 +38,7 @@ drop TABLE IF EXISTS  rss.mails;
  CREATE SCHEMA rss;
 CREATE TABLE rss.mails (
   id SERIAL PRIMARY KEY,
-  url varchar(50) NOT NULL,
+  url varchar(100) NOT NULL,
   name varchar(50),
   user_id INTEGER NOT NULL references rolo.users(id)
 );

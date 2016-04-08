@@ -31,7 +31,7 @@ public class Url implements Serializable {
     @Column(name="IS_ACTIVE")
 	private String isActive;
 
-	@OneToMany(mappedBy="url", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="url", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<Item> items;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
