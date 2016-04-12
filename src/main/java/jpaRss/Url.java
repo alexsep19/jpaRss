@@ -22,11 +22,8 @@ public class Url implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "url_seq_gen")
 	@SequenceGenerator(name = "url_seq_gen", sequenceName = "rss.urls_id_seq",allocationSize=1)
 	private Integer id;
-	@Temporal(TemporalType.DATE)
-	private Date lastpub;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date laststart;
-	private String schedule;
 	private String url;
     @Column(name="IS_ACTIVE")
 	private String isActive;
@@ -59,16 +56,6 @@ public class Url implements Serializable {
 		this.id = id;
 	}
 
-
-	public Date getLastpub() {
-		return this.lastpub;
-	}
-
-	public void setLastpub(Date lastpub) {
-		this.lastpub = lastpub;
-	}
-
-
 	public Date getLaststart() {
 		return this.laststart;
 	}
@@ -76,16 +63,6 @@ public class Url implements Serializable {
 	public void setLaststart(Date laststart) {
 		this.laststart = laststart;
 	}
-
-
-	public String getSchedule() {
-		return this.schedule;
-	}
-
-	public void setSchedule(String schedule) {
-		this.schedule = schedule;
-	}
-
 
 	public String getUrl() {
 		return this.url;

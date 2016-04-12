@@ -31,6 +31,9 @@ CREATE TABLE rolo.roles (
  CREATE UNIQUE INDEX users_unq ON rolo.users (name);
  CREATE UNIQUE INDEX state_unq ON rolo.state (name);
 --------- 
+drop index IF EXISTS urls_unq;
+drop index IF EXISTS items_unq;
+drop index IF EXISTS mails_unq;
 drop TABLE IF EXISTS rss.items;
 drop TABLE IF EXISTS  rss.urls;
 drop TABLE IF EXISTS  rss.mails;
@@ -47,19 +50,23 @@ CREATE TABLE rss.urls (
   id SERIAL PRIMARY KEY,
   mails_id INTEGER NOT NULL references rss.mails(id),
   url varchar(100) NOT NULL,
-  schedule varchar(50),
-  lastpub date,
   is_active char(1),
-  laststart date
+  laststart timestamp
 );
 CREATE TABLE rss.items (
   id SERIAL PRIMARY KEY,
   mails_id INTEGER NOT NULL references rss.mails(id),
   urls_id INTEGER NOT NULL references rss.urls(id),
   title varchar(50) NOT NULL,
+  lastpub timestamp,
   is_active char(1)
 );
 
 CREATE UNIQUE INDEX urls_unq ON rss.urls (url);
 CREATE UNIQUE INDEX items_unq ON rss.items (urls_id, title);
 CREATE UNIQUE INDEX mails_unq ON rss.mails (user_id, url);
+
+insert into rolo.roles (code) values ('admin');
+insert into rolo.roles (code) values ('any');
+insert into rolo.users (name,pass) values ('admin','admin');
+insert into rolo.urro ( role_id,user_id) values ( (select id from rolo.roles where code='admin'),(select id from rolo.users where name='admin'));

@@ -12,13 +12,13 @@
         <class>rolo.User</class>
 		<class>rolo.Log</class>
 		<class>rolo.State</class>
-     <properties>
+ <!--    <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/rss" />
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
       <property name="javax.persistence.jdbc.user" value="admin" />
       <property name="javax.persistence.jdbc.password" value="" />
       <property name="eclipselink.logging.level" value="ALL" />
-    </properties>
+    </properties>-->
   
 <!--        <validation-mode>NONE</validation-mode>-->
 	</persistence-unit>

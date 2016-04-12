@@ -1,6 +1,7 @@
 package jpaRss;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -16,6 +17,8 @@ public class Item implements Serializable {
 	@SequenceGenerator(name = "item_seq_gen", sequenceName = "rss.items_id_seq",allocationSize=1)
 	private Integer id;
 	private String title;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastpub;
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="mails_id")
 	private Mail mail;
@@ -80,5 +83,11 @@ public class Item implements Serializable {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
+	public Date getLastpub() {
+		return this.lastpub;
+	}
 
+	public void setLastpub(Date lastpub) {
+		this.lastpub = lastpub;
+	}
 }
