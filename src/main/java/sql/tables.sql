@@ -62,7 +62,7 @@ CREATE TABLE rss.items (
   is_active char(1)
 );
 
-CREATE UNIQUE INDEX urls_unq ON rss.urls (url);
+CREATE UNIQUE INDEX urls_unq ON rss.urls (mails_id, url);
 CREATE UNIQUE INDEX items_unq ON rss.items (urls_id, title);
 CREATE UNIQUE INDEX mails_unq ON rss.mails (user_id, url);
 
