@@ -21,11 +21,17 @@ CREATE TABLE rolo.roles (
   mess varchar(100),
   dt date NOT NULL
   );
-   CREATE TABLE rolo.state (
+ CREATE TABLE rolo.state (
   id SERIAL PRIMARY KEY,
   name varchar(20) NOT NULL,
   value varchar(20)
   );
+ CREATE TABLE rolo.urldb (
+  id SERIAL PRIMARY KEY,
+  name varchar(20) NOT NULL,
+  url varchar(100)
+  );
+  
  CREATE UNIQUE INDEX urro_unq ON rolo.urro (user_id,role_id);
  CREATE UNIQUE INDEX roles_unq ON rolo.roles (code);
  CREATE UNIQUE INDEX users_unq ON rolo.users (name);
