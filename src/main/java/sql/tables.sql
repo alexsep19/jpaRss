@@ -2,7 +2,7 @@ CREATE SCHEMA rolo;
 CREATE TABLE rolo.users (
   id SERIAL PRIMARY KEY,
   name varchar(30) NOT NULL,
-  pass varchar(20) NOT NULL,
+  pass varchar(100) NOT NULL,
   mail varchar(50)
 );
 CREATE TABLE rolo.roles (
@@ -66,6 +66,7 @@ CREATE UNIQUE INDEX urls_unq ON rss.urls (mails_id, url);
 CREATE UNIQUE INDEX items_unq ON rss.items (urls_id, title);
 CREATE UNIQUE INDEX mails_unq ON rss.mails (user_id, url);
 
+ALTER TABLE rolo.users ALTER COLUMN pass TYPE varchar(100);
 insert into rolo.roles (code) values ('admin');
 insert into rolo.roles (code) values ('any');
 insert into rolo.users (name,pass) values ('admin','admin');

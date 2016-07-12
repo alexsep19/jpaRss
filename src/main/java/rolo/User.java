@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.jboss.resteasy.util.Base64;
+
+import java.security.MessageDigest;
 import java.util.List;
 
+import org.jboss.resteasy.util.Base64;
 
 /**
  * The persistent class for the users database table.
@@ -70,7 +74,12 @@ public class User implements Serializable {
 	}
 
 	public void setPass(String pass) {
-		this.pass = pass;
+		if (!pass.trim().isEmpty()){
+		  try{
+		   MessageDigest md = MessageDigest.getInstance("SHA-256");
+		   this.pass = Base64.encodeBytes(md.digest(pass.getBytes()));
+		  }catch(Exception e){}
+		}
 	}
 
 	public List<Urro> getUrros() {
