@@ -21,6 +21,15 @@ public class Urldb implements Serializable {
 	private String name;
 	private String url;
 
+	//------- mine -----------
+	public Integer getVersion() {
+		return 1;
+	}
+	public String toString(){
+        return id==null?"0":String.valueOf(id);
+	}
+    //--------------------------
+
 	public Urldb() {
 	}
 
