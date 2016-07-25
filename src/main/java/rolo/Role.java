@@ -3,6 +3,12 @@ package rolo;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +21,7 @@ import java.util.List;
 @Entity
 @Table(name="roles", schema = "ROLO")
 @NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
+@XmlRootElement
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +33,10 @@ public class Role implements Serializable {
 
 	//bi-directional many-to-one association to Urro
 	@OneToMany(mappedBy="role", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+//	@XmlElement
+//    @XmlInverseReference(mappedBy="role")
+//	@XmlIDREF
+	@XmlTransient
 	private List<Urro> urros;
 
 	//------- mine -----------

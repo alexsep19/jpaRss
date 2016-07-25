@@ -16,7 +16,7 @@ public class Urldb implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "urldb_seq_gen")
-	@SequenceGenerator(name = "urldb_seq_gen", sequenceName = "other.urldb_id_seq",allocationSize=1)
+	@SequenceGenerator(name = "urldb_seq_gen", sequenceName = "rolo.urldb_id_seq",allocationSize=1)
 	private Integer id;
 	private String name;
 	private String url;

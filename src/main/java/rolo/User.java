@@ -3,7 +3,11 @@ package rolo;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlTransient;
 
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import org.jboss.resteasy.util.Base64;
 
 import java.security.MessageDigest;
@@ -31,6 +35,9 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to Urro
 	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+//	@XmlElement
+//    @XmlInverseReference(mappedBy="user")
+	@XmlIDREF
 	private List<Urro> urros;
 	
 	//------- mine -----------

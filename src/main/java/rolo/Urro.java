@@ -3,6 +3,10 @@ package rolo;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlIDREF;
+
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 
 
 /**
